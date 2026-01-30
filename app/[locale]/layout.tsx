@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 import "../globals.css";
-import { montserrat, monument } from "@/lib/fonts";
+import { montserrat } from "@/lib/fonts";
 
 
 type Props = {
@@ -49,7 +49,7 @@ export default async function RootLayout({ children, params }: Props) {
   const direction = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={direction} className={`${montserrat.variable} ${monument.variable}`}>
+    <html lang={locale} dir={direction} className={`${montserrat.variable}`}>
       <head>
         <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />

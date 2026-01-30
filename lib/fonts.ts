@@ -8,19 +8,19 @@ export const montserrat = Montserrat({
   display: 'swap',
 })
 
-export const monument = localFont({
-  src: [
-    {
-      path: './fonts/MonumentExtended-Regular.otf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: './fonts/MonumentExtended-UltraBold.otf',
-      weight: '800',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-monument',
-  display: 'swap',
-})
+// export const monument = localFont({
+//   src: [
+//     {
+//       path: './fonts/MonumentExtended-Regular.otf',
+//       weight: '400',
+//       style: 'normal',
+//     },
+//     {
+//       path: './fonts/MonumentExtended-UltraBold.otf',
+//       weight: '800',
+//       style: 'normal',
+//     },
+//   ],
+//   variable: '--font-monument',
+//   display: 'swap',
+// })
