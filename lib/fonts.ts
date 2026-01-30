@@ -11,12 +11,12 @@ export const montserrat = Montserrat({
 export const monument = localFont({
   src: [
     {
-      path: '../public/fonts/MonumentExtended-Regular.otf',
+      path: '/fonts/MonumentExtended-Regular.otf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/MonumentExtended-UltraBold.otf',
+      path: '/fonts/MonumentExtended-UltraBold.otf',
       weight: '800',
       style: 'normal',
     },
