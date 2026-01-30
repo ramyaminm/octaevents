@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import TermsPage from '@/_components/Pages/terms/TermsPage'
 import { Metadata } from 'next'
 

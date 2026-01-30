@@ -1,5 +1,5 @@
 // app/[locale]/about-us/page.tsx
-
+export const runtime = 'edge';
 import { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/seo'
 import { getServerSideProps } from '@/_components/api/general'

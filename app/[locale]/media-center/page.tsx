@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import MediaPage from '@/_components/Pages/media-center/MediaPage'
 import { getServerSideProps } from '@/_components/api/general'
 import { Metadata } from 'next'

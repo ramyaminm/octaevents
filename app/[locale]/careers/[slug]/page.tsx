@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import SingleCareersPage from '@/_components/Pages/careers/SingleCareersPage'
 import { getServerSideProps } from '@/_components/api/general'
 import { Metadata } from 'next'

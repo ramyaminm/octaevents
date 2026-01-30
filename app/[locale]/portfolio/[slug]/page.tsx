@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { getServerSideProps } from '@/_components/api/general'

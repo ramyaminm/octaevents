@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { Metadata } from "next";
 import { getServerSideProps } from "@/_components/api/general";
 import SingleMedia from "@/_components/Pages/media-center/SingleMediaPage";

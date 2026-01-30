@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import ContactUsPage from '@/_components/Pages/contact-us/ContactUsPage'
 import { getServerSideProps } from '@/_components/api/general'
 import { Metadata } from 'next'

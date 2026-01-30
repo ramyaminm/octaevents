@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { getServerSideProps } from '@/_components/api/general'
 import { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/seo'
