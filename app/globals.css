@@ -17,7 +17,7 @@
 /* Medium */
 @font-face {
   font-family: 'MonumentExtended';
-  src: url('/fonts/MonumentExtended-UltraBold.otf') format('opentype');
+  src: url('/fonts/MonumentExtended-Ultrabold.otf') format('opentype');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
@@ -27,6 +27,7 @@
 .font-monument{
   font-family: 'MonumentExtended';
 }
+
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
 }
