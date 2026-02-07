@@ -89,7 +89,7 @@ export default function CareersPage({ page }: CareersPageProps) {
   return (
     <div className='bg-primary'>
       <div className='max-w-[1440px] mx-auto'>
-          <div className="text-center pb-14 pt-28  ">
+          <div className="text-center md:pb-14 pb-8 pt-28  ">
             {heading?.tagline && (
               <div className="relative inline-block">
                 <span
@@ -124,7 +124,7 @@ export default function CareersPage({ page }: CareersPageProps) {
 
             {heading?.title && (
               <div className="max-w-[750px] mt-[30px] mx-auto text-white">
-                  <h2 className="font-monument font-semibold text-5xl leading-[65px]">
+                  <h2 className="font-monument font-semibold md:text-5xl text-[32px] md:leading-[65px] leading-[42px]">
                     {heading.title}
                   </h2>
               </div>
@@ -132,15 +132,15 @@ export default function CareersPage({ page }: CareersPageProps) {
           </div>
 
           {hero && (
-            <section className="px-6 py-20">
-              <div className="px-4 grid md:grid-cols-2 gap-12 items-center">
+            <section className="md:px-6 px-4 md:py-20 py-8">
+              <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className='max-w-[550px]'>
-                  <h2 className="text-white font-monument text-4xl font-extrabold mb-6">
+                  <h2 className="text-white font-monument md:text-4xl text-[28px] font-extrabold mb-6">
                     {hero.title}
                   </h2>
 
                   <div
-                    className="text-white leading-relaxed"
+                    className="text-white md:text-base text-sm leading-relaxed"
                     dangerouslySetInnerHTML={{ __html: hero.content }}
                   />
                 </div>
@@ -158,13 +158,13 @@ export default function CareersPage({ page }: CareersPageProps) {
             </section>
           )}
 
-          <section className="py-24 px-4">
+          <section className="md:py-24 py-8 px-4">
             <div className="">
               <div className="text-center mb-12">
               
                 {vacancies?.tagline && (                  
-                  <div className={`pl-36 pb-14`} >
-                    <div className={`flex items-start gap-8`} >
+                  <div className={`md:pl-36 md:pb-14`} >
+                    <div className={`flex md:items-start items-center md:flex-row flex-col gap-8`} >
                       <div className='relative'>
                         <span className="absolute inset-0 translate-x-[3px] translate-y-[4px] rounded-full rotate-[-10deg] z-0"
                           style={{ backgroundColor:vacancies.tagline.back_color}}
@@ -192,7 +192,7 @@ export default function CareersPage({ page }: CareersPageProps) {
                           {vacancies.tagline.text}
                         </h5>
                       </div>
-                      <div>
+                      <div className='md:w-[160px] md:h-[160px] w-[60px] h-[60px]'>
                         <VacanciesIcon />
                           {/* <Image
                             src={service.service_arrow}
@@ -209,7 +209,7 @@ export default function CareersPage({ page }: CareersPageProps) {
 
 
                 {vacancies?.title && (
-                  <h2 className="text-white font-monument text-5xl font-extrabold mt-6">
+                  <h2 className="text-white font-monument md:text-5xl text-[28px] font-extrabold mt-6">
                     {vacancies.title}
                   </h2>
                 )}
@@ -260,7 +260,7 @@ export default function CareersPage({ page }: CareersPageProps) {
                     <div className="h-px bg-[#D0CDD8] my-3" />
                   
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-6 text-sm text-[#6B6B7A]">
+                      <div className="flex md:items-center md:flex-row flex-col md:gap-6 gap-3 text-sm text-[#6B6B7A]">
                         <span className="flex items-center gap-2">
                           <MapMarker />
                           {job.location}

@@ -81,10 +81,18 @@ export default function FAQPage({ page }: FAQPageProps) {
     <div>
       <TitleBackground data={page} />
 
-      <div className="px-4 py-14">
-        <div className="max-w-[1200px] mx-auto space-y-14">
+      <div className="px-4 md:py-14 py-8">
+        <div className="max-w-[1200px] mx-auto md:space-y-14 space-y-4">
 
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="
+              flex
+              gap-2
+              overflow-x-auto
+              whitespace-nowrap
+              pb-2
+              lg:flex-wrap
+              lg:justify-center
+              lg:overflow-visible">
             <button
               onClick={() => setActiveCategory('all')}
               className={`
@@ -122,7 +130,7 @@ export default function FAQPage({ page }: FAQPageProps) {
               {t('loading')}...
             </p>
           ) : filteredFaqs.length > 0 ? (
-            <div className="max-w-[900px] mx-auto space-y-4">
+            <div className="max-w-[900px] mx-auto md:space-y-4 space-y-2">
               {filteredFaqs.map(faq => {
                 const isOpen = openId === faq.id
 

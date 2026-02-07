@@ -22,7 +22,7 @@ export default function FAQItem({
         onClick={onToggle}
         className="w-full flex items-center justify-between text-left p-6"
       >
-        <h3 className="font-semibold md:text-lg text-base text-primary">
+        <h3 className="font-semibold md:text-lg text-base text-primary w-[90%]">
           {question}
         </h3>
 

@@ -224,7 +224,7 @@ useEffect(() => {
   return (
     <div className="overflow-hidden">
 
-      <section className="relative lg:h-screen h-[80vh] lg:py-0 py-32 flex lg:items-center">
+      <section className="relative lg:h-screen h-[80vh] lg:py-0 py-28 flex lg:items-center">
         <video
           className="absolute inset-0 w-full h-full object-cover"
           src={extra_content.hero.video}
@@ -236,7 +236,7 @@ useEffect(() => {
 
         <div className="absolute inset-0 bg-[#12063BCC]" />
 
-          <div className="relative z-10 max-w-[900px] px-6">
+          <div className="relative z-10 max-w-[900px] md:px-6 px-4">
                 <h1 className="font-monument text-white lg:text-5xl text-[32px] lg:leading-[60px] font-extrabold max-w-[300px]">
                   {extra_content.hero.title}
                 </h1>
@@ -254,9 +254,9 @@ useEffect(() => {
                 </div>
           </div>
 
-          <div className=' absolute bottom-10 left-4 right-4 flex justify-between'>
-              <div className=" relative w-[120px] h-[120px] flex items-center justify-center">
-                  <div className="absolute inset-0 w-[120px] h-[120px]">
+          <div className=' absolute md:bottom-10 bottom-4 left-4 right-4 flex justify-between'>
+              <div className=" relative md:w-[120px] md:h-[120px] w-[60px] h-[60px] flex items-center justify-center">
+                  <div className="absolute inset-0 md:w-[120px] md:h-[120px] w-[60px] h-[60px]">
                       <svg
                           viewBox="0 0 120 120"
                           className="w-full h-full overflow-visible animate-spin-slow"
@@ -291,35 +291,38 @@ useEffect(() => {
                       // onClick={handlePlay}
                       className="
                       relative z-10
-                      h-14 w-14
+                      md:h-14 md:w-14 h-[26px] w-[26px]
                       rounded-full
                       bg-white
                       flex items-center justify-center
                       transition
                       "
                   >
+                    <span className='block md:w-[21px] md:h-[24px] w-[12px] h-[13px]'>
                       <IconPlay />
+                    </span>
                   </button>
               </div>
               {/* customers */}
-              <div className="flex items-center gap-4 mt-10">
+              <div className="flex items-center md:gap-4 gap-2 md:mt-10">
                 <div className="flex -space-x-3">
                   {extra_content.hero.customers.items.map((item: any, i: number) => (
-                    <Image
-                      key={i}
-                      src={item.image.src}
-                      alt={item.image.alt}
-                      width={40}
-                      height={40}
-                      className="rounded-full border-2 border-[#0B0225]"
-                    />
+                    <div className=' relative md:w-[60px] md:h-[60px] w-[30px] h-[30px]'>
+                      <Image
+                        key={i}
+                        src={item.image.src}
+                        alt={item.image.alt}
+                        fill
+                        className="rounded-full border-2 border-[#0B0225]"
+                      />
+                    </div>
                   ))}
                 </div>
                 <div>
-                  <p className="font-bold font-monument text-2xl text-secondary">
+                  <p className="font-bold font-monument md:text-2xl text-base text-secondary">
                     {extra_content.hero.customers.count}
                   </p>
-                  <p className="text-white">
+                  <p className="text-white md:text-base text-xs">
                     {extra_content.hero.customers.title}
                   </p>
                 </div>
@@ -500,7 +503,7 @@ useEffect(() => {
 
           </section>
 
-          <section ref={workRef} className="md:py-40 py-16">
+          <section ref={workRef} className="md:py-40 py-16 px-4">
 
             <div className="text-center">
               <AnimatedSectionTitle
@@ -513,7 +516,7 @@ useEffect(() => {
                 variants={fadeUpItem(20, 0.6)}
                 initial="hidden"
                 animate={workInView ? "visible" : "hidden"}
-                className="text-center text-white py-6"
+                className="text-center md:text-base text-sm text-white md:pt-6 pb-6 pt-[4px]"
               >
                 {extra_content.how_we_work.subtitle}
               </motion.p>

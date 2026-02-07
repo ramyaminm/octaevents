@@ -20,7 +20,7 @@ export default function AnimatedSectionTitle({
       className={`
         text-center
         lg:text-5xl
-        text-[32px]
+        text-[28px]
         font-monument
         font-extrabold
         ${className}
