@@ -60,9 +60,9 @@ export default function SingleMedia({
               Media Center
             </h1>
           </div>
-  
+
           <div
-            className="font-monument font-semibold max-w-[750px] mt-[30px] mx-auto leading-[65px] text-5xl text-white"
+            className="font-monument font-semibold max-w-[750px] mt-[30px] mx-auto  md:leading-[65px] leading-[42px] md:text-5xl text-[32px] text-white"
             dangerouslySetInnerHTML={{ __html: data.title }}
           />
       </div>

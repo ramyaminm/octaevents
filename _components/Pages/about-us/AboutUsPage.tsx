@@ -2,7 +2,6 @@
 import Image from 'next/image'
 import Base from '@/_components/Common/Buttons/base'
 import LetsTalk from '@/_components/Common/LetsTalk'
-import FAQPage from '../faq/FaqPage'
 import { useEffect, useState } from 'react'
 import FAQItem from '@/_components/Common/FAQItem'
 import { getServerSideProps } from '@/_components/api/general'
@@ -68,26 +67,35 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
     const [hovered, setHovered] = useState<number | null>(null)
 
     const getTransform = (index: number) => {
+      if (typeof window !== "undefined" && window.innerWidth < 1024) {
+        return "translateX(0px) rotate(0deg)"
+      }
+    
       if (hovered === null) {
-        if (index === 0) return "translateX(70px) rotate(6deg)"
+        if (index === 0) return "translateX(60px) rotate(6deg)"
         if (index === 1) return "rotate(-6deg)"
-        if (index === 2) return "translateX(-70px) rotate(6deg)"
+        if (index === 2) return "translateX(-60px) rotate(6deg)"
       }
     
-      if (hovered === index) {
-        return "translateY(-40px) scale(1.15) rotate(0deg)"
+      if (hovered === 0) {
+        if (index === 0) return "translateX(60px) rotate(0deg)"
+        if (index === 1) return "translateX(180px) rotate(-6deg)"
+        if (index === 2) return "translateX(100px) rotate(6deg)"
       }
     
-      if (hovered !== null) {
-        if (index < hovered) {
-          return "translateX(-120px) rotate(-12deg) scale(.9)"
-        }
-        if (index > hovered) {
-          return "translateX(120px) rotate(12deg) scale(.9)"
-        }
+      if (hovered === 1) {
+        if (index === 0) return "translateX(-60px) rotate(6deg)"
+        if (index === 1) return "rotate(0deg)"
+        if (index === 2) return "translateX(60px) rotate(6deg)"
       }
     
-      return ""
+      if (hovered === 2) {
+        if (index === 0) return "translateX(-100px) rotate(6deg)"
+        if (index === 1) return "translateX(-150px) rotate(-6deg)"
+        if (index === 2) return "translateX(-60px) rotate(0deg)"
+      }
+    
+      return "translateX(0px) rotate(0deg)"
     }
     
 
@@ -109,8 +117,6 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
         fetchFaqs()
       }, [])
       
-
-
       
     useEffect(() => {
         const handleScroll = () => {
@@ -130,7 +136,7 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
   return (
     <div className="">
 
-        <section className="relative overflow-hidden bg-primary lg:py-28 py-14 h-[100vh]">
+        <section className="relative overflow-hidden bg-primary  lg:h-screen h-[80vh] lg:py-0 py-32">
         
             {extra_content.hero.video && (
                 <video
@@ -247,35 +253,34 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
                     {extra_content.values.title}
                 </h2>
                 <div className="grid md:grid-cols-3 gap-6 max-w-[1000px] m-auto">
-                  {extra_content.values.items.map((item, i) => {
-                    const isActive = hovered === i
-                    const isDimmed = hovered !== null && hovered !== i
-
-                    return (
-                      <div
+                   {extra_content.values.items.map((item, i) => {
+                      return (
+                        <div
                         key={i}
-                        onMouseEnter={() => setHovered(i)}
-                        onMouseLeave={() => setHovered(null)}
+                        onMouseEnter={() => {
+                          if (window.innerWidth >= 1024) setHovered(i)
+                        }}
+                        onMouseLeave={() => {
+                          if (window.innerWidth >= 1024) setHovered(null)
+                        }}
                         className="
                           p-8 rounded-2xl cursor-pointer
-                          transition-[transform,opacity] duration-500
+                          transition-transform duration-500
                           ease-[cubic-bezier(.22,1,.36,1)]
                         "
                         style={{
                           backgroundColor: item.card_color,
                           color: item.text_color,
                           transform: getTransform(i),
-                          zIndex: isActive ? 30 : 10,
-                          opacity: isDimmed ? 0.6 : 1,
                         }}
-                      >
-                        <h3 className="font-monument font-extrabold text-2xl mb-3">
-                          {item.title}
-                        </h3>
-                        <p>{item.description}</p>
-                      </div>
-                    )
-                  })}
+                        >
+                          <h3 className="font-monument font-extrabold text-2xl mb-3">
+                            {item.title}
+                          </h3>
+                          <p>{item.description}</p>
+                        </div>
+                      )
+                    })}
                 </div>
             </div>
         </section>
@@ -318,11 +323,11 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
         </div>
       </section>
 
-      <section className="py-24">
-            <h2 className="lg:text-5xl text-[32px] lg:leading-[60px] leading-[30px] font-monument font-extrabold text-primary text-center mb-20 max-w-[600px] m-auto">
+      <section className="md:py-24 py-14">
+            <h2 className="lg:text-5xl text-[32px] lg:leading-[60px] leading-[42px] font-monument font-extrabold text-primary text-center lg:mb-16 mb-6 max-w-[600px] m-auto">
                 {extra_content.faqs.title}
             </h2>
-            <div className="max-w-[900px] mx-auto space-y-4">
+            <div className="max-w-[900px] mx-auto space-y-4 px-4">
                 {faqList.map(faq => {
                     const isOpen = openId === faq.id
 

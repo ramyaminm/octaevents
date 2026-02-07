@@ -14,9 +14,9 @@ export default function ContactUsPage({ page }: ContactPageProps) {
 
   return (
     <div className="bg-primary py-20 px-4">
-      <div className="max-w-[1440px] mx-auto space-y-20 pt-[80px]">
+      <div className="max-w-[1440px] mx-auto md:space-y-20 space-y-10 md:pt-[80px] pt-[40px]">
 
-        <div className="bg-white rounded-[32px] p-10 grid lg:grid-cols-2 gap-10">
+        <div className="bg-white rounded-[32px] md:p-10 p-6 grid lg:grid-cols-2 gap-10">
           <div>
             <div className="relative inline-block">
                 <span
@@ -49,7 +49,7 @@ export default function ContactUsPage({ page }: ContactPageProps) {
               </div>
           
 
-            <h1 className=" text-[44px] font-monument font-extrabold text-primary py-4">
+            <h1 className=" md:text-[44px] text-[28px] font-monument font-extrabold text-primary py-4">
               {extra.form.title}
             </h1>
 
@@ -75,45 +75,51 @@ export default function ContactUsPage({ page }: ContactPageProps) {
                     url('/images/bg_letstalk.jpg')
                 `,
             }} />
-          <h2 className="text-center font-monument text-[44px] font-extrabold mb-14 z-[9] relative">
+          <h2 className="text-center font-monument md:text-[44px] text-[28px] font-extrabold mb-14 z-[9] relative">
             {extra.title}
           </h2>
 
           <div className="grid md:grid-cols-3 gap-10 text-center z-[9] relative">
 
-            <div className="space-y-4">
-              <Image
-                src={extra.email.icon.src}
-                alt={extra.email.icon.alt}
-                width={130}
-                height={130}
-                className="mx-auto"
-              />
-              <h4 className="font-extrabold font-monument text-2xl">{extra.email.title}</h4>
-              <p>{extra.email.value}</p>
+            <div className="md:space-y-4 space-y-2">
+               <div className=' relative md:w-32 md:h-32 w-16 h-16 m-auto'>
+                  <Image
+                    src={extra.email.icon.src}
+                    alt={extra.email.icon.alt}
+                   fill
+                    className="mx-auto"
+                  />
+                </div>
+             
+              <h4 className="font-extrabold font-monument md:text-2xl text-lg">{extra.email.title}</h4>
+              <p className=' text-sm m-0'>{extra.email.value}</p>
             </div>
 
-            <div className="space-y-4">
-              <Image
-                src={extra.phone.icon.src}
-                alt={extra.phone.icon.alt}
-                width={130}
-                height={130}
-                className="mx-auto"
-              />
-              <h4 className="font-extrabold font-monument text-2xl">{extra.phone.title}</h4>
+            <div className="md:space-y-4 space-y-2">
+              <div className=' relative md:w-32 md:h-32 w-16 h-16 m-auto'>
+                <Image
+                  src={extra.phone.icon.src}
+                  alt={extra.phone.icon.alt}
+                 fill
+                  className="mx-auto"
+                />
+              </div>
+              
+              <h4 className="font-extrabold font-monument md:text-2xl text-lg">{extra.phone.title}</h4>
               <p>{extra.phone.value}</p>
             </div>
 
-            <div className="space-y-4">
-              <Image
-                src={extra.location.icon.src}
-                alt={extra.location.icon.alt}
-                width={130}
-                height={130}
-                className="mx-auto"
-              />
-              <h4 className="font-extrabold font-monument text-2xl">{extra.location.title}</h4>
+            <div className="md:space-y-4 space-y-2">
+              <div className=' relative md:w-32 md:h-32 w-16 h-16 m-auto'>
+                <Image
+                  src={extra.location.icon.src}
+                  alt={extra.location.icon.alt}
+                 fill
+                  className="mx-auto"
+                />
+              </div>
+            
+              <h4 className="font-extrabold font-monument md:text-2xl text-lg">{extra.location.title}</h4>
               <p>{extra.location.address}</p>
 
               <a

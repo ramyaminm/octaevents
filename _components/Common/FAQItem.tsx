@@ -22,18 +22,18 @@ export default function FAQItem({
         onClick={onToggle}
         className="w-full flex items-center justify-between text-left p-6"
       >
-        <h3 className="font-semibold text-lg text-primary">
+        <h3 className="font-semibold md:text-lg text-base text-primary">
           {question}
         </h3>
 
-        <span className="w-8 h-8 flex items-center justify-center rounded-full bg-secondary text-primary font-bold">
-          {isOpen ? <Minus /> : <Plus />}
+        <span className="md:w-8 w-6 md:h-8 h-6 flex items-center justify-center rounded-full bg-secondary text-primary font-bold">
+          {isOpen ? <span className='block md:w-6 md:h-6 w-4 h-4'> <Minus /></span> : <span className='block md:w-5 md:h-5 w-4 h-4'> <Plus /></span>}
         </span>
       </button>
 
       {isOpen && (
         <div
-          className="px-6 pb-6 text-[#413862] text-base leading-relaxed"
+          className="px-6 pb-6 text-[#413862] md:text-base text-sm leading-relaxed"
           dangerouslySetInnerHTML={{ __html: answer }}
         />
       )}

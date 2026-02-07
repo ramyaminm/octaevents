@@ -4,7 +4,7 @@ import LetsTalkIcon from "../SVGs/letstalk"
 
 export default function LetsTalk() {
     return (
-      <section className="px-4 py-16">
+      <section className="px-4 md:py-16 py-8">
         <div
           className="
             relative

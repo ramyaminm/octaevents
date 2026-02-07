@@ -22,8 +22,8 @@ export default function CtaButton({
         gap-2
         bg-[#FDBA3B]
         text-primary
-        px-8
-        py-3
+        lg:px-8 px-4
+        lg:py-3 py-2
         rounded-full
         text-sm
         font-semibold

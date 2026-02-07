@@ -334,15 +334,16 @@ export default function ServicesPage({ page }: Props) {
                     </div>
                 </div>
 
-                <div className="space-y-6 w-full">
+                <div className="md:space-y-6 space-y-3 w-full">
                   <div>
-                    <Image
-                      src={service.service_icon}
-                      alt={service.name}
-                      width={120}
-                      height={120}
-                    />
-                    <h2 className="lg:text-4xl text-2xl font-monument font-extrabold pt-8">{service.name}</h2>
+                    <div className=' relative md:w-28 md:h-28 w-16 h-16'>
+                      <Image
+                        src={service.service_icon}
+                        alt={service.name}
+                       fill
+                      />
+                    </div>
+                    <h2 className="lg:text-4xl text-2xl font-monument font-extrabold md:pt-8 pt-4">{service.name}</h2>
                   </div>
 
                   <div

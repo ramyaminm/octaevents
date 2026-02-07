@@ -297,6 +297,23 @@ i{
   color: white;
 }
 
+@media (max-width: 768px) {
+  .marquee-text-track {
+    animation-duration: 12s; /* faster on mobile */
+  }
+
+  .marquee-text-track.pink {
+    animation-duration: 12s;
+  }
+
+  .marquee-text {
+    font-size: 16px;       /* smaller text */
+    padding: 4px 8px;
+    padding-right: 1.5rem;
+  }
+}
+
+
 @keyframes marqueeText {
   0% {
     transform: translateX(0);

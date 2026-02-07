@@ -32,7 +32,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       href={`/portfolio/${project.slug}`}
       className="
         group relative overflow-hidden
-        bg-black cursor-pointer
+       cursor-pointer
       "
     >
       <Image
@@ -47,7 +47,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         "
       />
 
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-black/50 group-hover:scale-105  transition-transform duration-500" />
 
       {project.brand?.logo && (
         <div className="absolute top-3 left-3 z-10">

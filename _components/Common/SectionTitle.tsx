@@ -35,7 +35,7 @@ export default function SectionTitle({
   if (!tagline && !title) return null
 
   return (
-    <div className="text-center bg-primary pb-14 pt-28  ">
+    <div className="text-center bg-primary pb-14 pt-28  px-4">
       {tagline && (
         <div className="relative inline-block">
           <span
@@ -71,7 +71,7 @@ export default function SectionTitle({
       {(title) && (
         <div className="max-w-[750px] mt-[30px] mx-auto text-white">
           {title && (
-            <h2 className="font-monument font-semibold text-5xl leading-[65px]">
+            <h2 className="font-monument font-semibold md:text-5xl text-[32px] md:leading-[65px] leading-[42px]">
               {title}
             </h2>
           )}

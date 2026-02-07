@@ -102,7 +102,7 @@ export default function MediaPage({ page, gallery }: MediaProps) {
           <div className="flex justify-center gap-4">
             <button
               onClick={() => setView('blog')}
-              className={`text-lg w-48 p-3 rounded-full font-semibold transition
+              className={`md:text-lg w-48 md:p-3 p-2 rounded-full font-semibold transition
                 ${
                   view === 'blog'
                     ? 'bg-secondary'
@@ -115,7 +115,7 @@ export default function MediaPage({ page, gallery }: MediaProps) {
 
             <button
               onClick={() => setView('gallery')}
-              className={`text-lg w-48 p-3 rounded-full font-semibold transition
+              className={`md:text-lg w-48 md:p-3 p-2 rounded-full font-semibold transition
                 ${
                   view === 'gallery'
                      ? 'bg-secondary'
