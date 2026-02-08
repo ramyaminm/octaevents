@@ -84,7 +84,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4 pt-6 ">
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-4">
         <div className="field">
           <label className="field-label">First Name</label>
           <input
@@ -139,11 +139,11 @@ export default function ContactForm() {
           Inquiry Purpose
         </p>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="flex md:flex-row flex-wrap flex-col">
           {services.map(service => (
             <label
               key={service}
-              className="flex items-center gap-3 text-primary"
+              className="flex items-center gap-3 text-primary md:w-1/2 pb-4"
             >
               <input
                 type="checkbox"

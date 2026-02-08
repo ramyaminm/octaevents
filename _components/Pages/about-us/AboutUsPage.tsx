@@ -65,9 +65,22 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
     const [scrolled300, setScrolled300] = useState(false)
 
     const [hovered, setHovered] = useState<number | null>(null)
+    const [isMobile, setIsMobile] = useState(false)
+
+
+    useEffect(() => {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 1024)
+      }
+    
+      checkMobile()
+      window.addEventListener('resize', checkMobile)
+    
+      return () => window.removeEventListener('resize', checkMobile)
+    }, [])
 
     const getTransform = (index: number) => {
-      if (typeof window !== "undefined" && window.innerWidth < 1024) {
+      if (isMobile) {
         return "translateX(0px) rotate(0deg)"
       }
     
@@ -252,32 +265,35 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
                 <h2 className="lg:text-5xl text-[32px] font-monument font-extrabold text-white text-center mb-12">
                     {extra_content.values.title}
                 </h2>
-                <div className="grid md:grid-cols-3 gap-6 max-w-[1000px] m-auto">
+                <div className="flex md:flex-row flex-col md:gap-y-0 gap-y-3 max-w-[1000px] m-auto">
                    {extra_content.values.items.map((item, i) => {
                       return (
-                        <div
-                        key={i}
-                        onMouseEnter={() => {
-                          if (window.innerWidth >= 1024) setHovered(i)
-                        }}
-                        onMouseLeave={() => {
-                          if (window.innerWidth >= 1024) setHovered(null)
-                        }}
-                        className="
-                          p-8 rounded-2xl cursor-pointer
-                          transition-transform duration-500
-                          ease-[cubic-bezier(.22,1,.36,1)]
-                        "
-                        style={{
-                          backgroundColor: item.card_color,
-                          color: item.text_color,
-                          transform: getTransform(i),
-                        }}
-                        >
-                          <h3 className="font-monument font-extrabold text-2xl mb-3">
-                            {item.title}
-                          </h3>
-                          <p>{item.description}</p>
+                        <div className=' relative md:w-1/3 w-full'>
+                          <div
+                          key={i}
+                          onMouseEnter={() => {
+                            if (window.innerWidth >= 1024) setHovered(i)
+                          }}
+                          onMouseLeave={() => {
+                            if (window.innerWidth >= 1024) setHovered(null)
+                          }}
+                          className="
+                            p-8 rounded-2xl cursor-pointer
+                            transition-transform duration-500
+                            ease-[cubic-bezier(.22,1,.36,1)]
+                             w-full h-full
+                          "
+                          style={{
+                            backgroundColor: item.card_color,
+                            color: item.text_color,
+                            transform: getTransform(i),
+                          }}
+                          >
+                            <h3 className="font-monument font-extrabold text-2xl mb-3">
+                              {item.title}
+                            </h3>
+                            <p>{item.description}</p>
+                          </div>
                         </div>
                       )
                     })}

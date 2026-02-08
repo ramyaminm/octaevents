@@ -68,6 +68,7 @@ export default function HomePage({ page }: { page?: HomePageData }) {
   const [brandRef,brandInView] = useScrollAnimation();
   const [faqsRef, faqsInView] = useScrollAnimation();
   const [blogRef, blogInView] = useScrollAnimation();
+  const [isMobile, setIsMobile] = useState(false)
 
 
 const [projectsRef, projectsInView] = useInView({
@@ -186,9 +187,18 @@ useEffect(() => {
 }, [locale])
     
 
+useEffect(() => {
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth < 1024)
+  }
 
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+
+  return () => window.removeEventListener('resize', checkMobile)
+}, [])
 const getTransform = (index: number) => {
-  if (typeof window !== "undefined" && window.innerWidth < 1024) {
+  if (isMobile) {
     return "translateX(0px) rotate(0deg)"
   }
 
@@ -260,6 +270,7 @@ const handleMouseMove = (e: React.MouseEvent) => {
 const handleMouseLeave = () => {
   setHovered(null)
 }
+
 
   return (
     <div className="overflow-hidden">
@@ -629,7 +640,7 @@ const handleMouseLeave = () => {
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="flex md:flex-row flex-col justify-center max-w-[1200px] mx-auto md:px-6 overflow-visible"
+            className="flex md:flex-row flex-col md:gap-y-0 gap-y-3 justify-center max-w-[1200px] mx-auto md:px-6 overflow-visible"
           >
             {extra_content.features.items.map((item: any, i: number) => (
               <div key={i} data-card className="relative  md:w-1/4 w-full">
