@@ -28,6 +28,7 @@ interface Props {
   text: string
   inView: boolean
   className?: string
+  onComplete?: () => void;
 }
 
 export default function AnimatedTypingText({

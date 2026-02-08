@@ -1,16 +1,16 @@
 export default function TermsPage() {
     return (
-      <section className="py-20 px-4">
+      <section className="bg-primary py-40 px-4">
         <div className="max-w-[900px] mx-auto">
   
-          <h1 className="text-center font-monument text-[32px] md:text-[48px] font-extrabold text-primary mb-12">
+          <h1 className="text-center font-monument text-[32px] md:text-[48px] font-extrabold text-white mb-12">
             Terms & Conditions
           </h1>
   
-          <div className="space-y-10 text-[#413862] text-base leading-relaxed">
+          <div className="space-y-10 text-white text-base leading-relaxed">
   
             <div>
-              <h2 className="text-xl font-monument font-extrabold text-primary mb-3">
+              <h2 className="text-xl font-monument font-extrabold text-white mb-3">
                 Introduction
               </h2>
               <p>
@@ -21,7 +21,7 @@ export default function TermsPage() {
             </div>
   
             <div>
-              <h2 className="text-xl font-monument font-extrabold text-primary mb-3">
+              <h2 className="text-xl font-monument font-extrabold text-white mb-3">
                 1. Use of Website
               </h2>
               <p>
@@ -34,7 +34,7 @@ export default function TermsPage() {
             </div>
   
             <div>
-              <h2 className="text-xl font-monument font-extrabold text-primary mb-3">
+              <h2 className="text-xl font-monument font-extrabold text-white mb-3">
                 2. Intellectual Property
               </h2>
               <p>
@@ -46,7 +46,7 @@ export default function TermsPage() {
             </div>
   
             <div>
-              <h2 className="text-xl font-monument font-extrabold text-primary mb-3">
+              <h2 className="text-xl font-monument font-extrabold text-white mb-3">
                 3. Service Information
               </h2>
               <p>
@@ -58,7 +58,7 @@ export default function TermsPage() {
             </div>
   
             <div>
-              <h2 className="text-xl font-monument font-extrabold text-primary mb-3">
+              <h2 className="text-xl font-monument font-extrabold text-white mb-3">
                 4. Third-Party Links
               </h2>
               <p>
@@ -69,7 +69,7 @@ export default function TermsPage() {
             </div>
   
             <div>
-              <h2 className="text-xl font-monument font-extrabold text-primary mb-3">
+              <h2 className="text-xl font-monument font-extrabold text-white mb-3">
                 5. Limitation of Liability
               </h2>
               <p>
@@ -81,7 +81,7 @@ export default function TermsPage() {
             </div>
   
             <div>
-              <h2 className="text-xl font-monument font-extrabold text-primary mb-3">
+              <h2 className="text-xl font-monument font-extrabold text-white mb-3">
                 6. Privacy and Data
               </h2>
               <p>
@@ -93,7 +93,7 @@ export default function TermsPage() {
             </div>
   
             <div>
-              <h2 className="text-xl font-monument font-extrabold text-primary mb-3">
+              <h2 className="text-xl font-monument font-extrabold text-white mb-3">
                 7. Changes to Terms
               </h2>
               <p>
@@ -104,7 +104,7 @@ export default function TermsPage() {
             </div>
   
             <div>
-              <h2 className="text-xl font-monument font-extrabold text-primary mb-3">
+              <h2 className="text-xl font-monument font-extrabold text-white mb-3">
                 8. Contact Us
               </h2>
               <p>

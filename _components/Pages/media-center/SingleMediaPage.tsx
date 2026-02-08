@@ -105,7 +105,7 @@ export default function SingleMedia({
 
       {relatedBlogs.length > 0 && (
         <div className="bg-[#E7E6EB] py-12 px-4">
-          <div className="max-w-[1392px] mx-auto space-y-10">
+          <div className="max-w-[1440px] mx-auto space-y-10">
             <h2 className="text-center font-monument md:text-[44px] md:leading-[55px] text-[32px] font-extrabold">
               {t("Read Also")}
             </h2>

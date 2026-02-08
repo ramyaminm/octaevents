@@ -42,17 +42,17 @@ export async function getSEOMetadata(
 
     if (!realData) {
       return {
-        title: "Bassem Baha",
-        description: "Bassem Baha",
+        title: "octaevents",
+        description: "octaevents",
       };
     }
 
     return {
-      title: realData.seo_title ?? "Bassem Baha",
+      title: realData.seo_title ?? "octaevents",
       description: realData.seo_description,
       keywords: realData.seo_keywords[0],
       openGraph: {
-        title: realData.seo_title ?? "Bassem Baha",
+        title: realData.seo_title ?? "octaevents",
         description: realData.seo_description,
         images: [
           {
@@ -64,7 +64,7 @@ export async function getSEOMetadata(
   } catch (error) {
     console.error("getSEOMetadata error:", error);
     return {
-      title: "Bassem Baha",
+      title: "octaevents",
       description: "The page not found",
     };
   }

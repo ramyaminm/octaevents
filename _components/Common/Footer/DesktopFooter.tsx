@@ -10,7 +10,7 @@ import Map from '@/_components/SVGs/map-alt'
 export default function DesktopFooter({ data }: { data: FooterApiData }) {
   return (
     <div className="bg-primary text-white px-6 py-20">
-        <div className="max-w-[1392px] mx-auto grid lg:grid-cols-4 md:grid-cols-2 gap-12">
+        <div className="max-w-[1440px] mx-auto grid lg:grid-cols-4 md:grid-cols-2 gap-12">
 
             <div>
                 <Image

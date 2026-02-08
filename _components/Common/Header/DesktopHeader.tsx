@@ -51,7 +51,7 @@ export default function DesktopHeader({ data }: HeaderProps) {
       ${scrolled ? 'bg-white shadow-lg backdrop-blur' : 'bg-transparent'}
     `}>
      {/* <div className="z-50 bg-primary px-6"> */}
-      <div className="max-w-[1392px] mx-auto flex items-center justify-between h-[90px]">
+      <div className="max-w-[1440px] mx-auto flex items-center justify-between h-[90px]">
 
         <Link href={locale === 'en' ? '/' : '/ar'} className="relative w-[140px] h-[52px]">
           <Image src={scrolled ? data.logo_dark.src : data.logo.src} alt={scrolled ? data.logo_dark.alt : data.logo.alt} fill />

@@ -97,7 +97,7 @@ export default function MediaPage({ page, gallery }: MediaProps) {
       <SectionTitle data={page} />
 
       <div className="bg-[#E7E6EB] px-4 py-10">
-        <div className="max-w-[1392px] mx-auto space-y-12">
+        <div className="max-w-[1440px] mx-auto space-y-12">
 
           <div className="flex justify-center gap-4">
             <button

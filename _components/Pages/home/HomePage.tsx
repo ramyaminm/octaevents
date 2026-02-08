@@ -1,7 +1,7 @@
 'use client'
 import { useLocale } from 'next-intl'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Base from '@/_components/Common/Buttons/base'
 import LetsTalk from '@/_components/Common/LetsTalk'
 import FAQItem from '@/_components/Common/FAQItem'
@@ -58,36 +58,7 @@ export default function HomePage({ page }: { page?: HomePageData }) {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   const firstRow = repeatUntilFilled(extra_content.brands.first_row, 24)
   const secondRow = repeatUntilFilled(extra_content.brands.second_row, 24)
-  // // Impact
-  // const titleVariant = {
-  //   hidden: { opacity: 0, y: 40 },
-  //   visible: {
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: { duration: 0.8 }
-  //   }
-  // };
-  
-  // const containerVariant = {
-  //   hidden: {},
-  //   visible: {
-  //     transition: {
-  //       staggerChildren: 0.35   // كان 0.2
-  //     }
-  //   }
-  // }
 
-  // const itemVariant: Variants = {
-  //   hidden: { opacity: 0, y: 40 },
-  //   visible: {
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: {
-  //       duration: 0.9,
-  //       ease: "easeOut"
-  //     }
-  //   }
-  // };
 
   const [ref, inView] = useScrollAnimation();
   const [servicesRef, servicesInView] = useScrollAnimation();
@@ -103,51 +74,46 @@ const [projectsRef, projectsInView] = useInView({
   triggerOnce: true,
   threshold: 0.3
 });
+useEffect(() => {
+  if (projectsInView) {
+    setProjectsSectionInView(true);
+  }
+}, [projectsInView]);
+const [titleDone, setTitleDone] = useState(false);
+const [projectsSectionInView, setProjectsSectionInView] = useState(false);
+useEffect(() => {
+  if (projectsSectionInView) {
+    const fallbackTimer = setTimeout(() => {
+      setTitleDone(true);
+    }, 1200); // نفس مدة الـ typing تقريبًا
+
+    return () => clearTimeout(fallbackTimer);
+  }
+}, [projectsSectionInView]);
+
+const containerVariants = {
+  hidden: { opacity: 1 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
 
 const [hovered, setHovered] = useState<number | null>(null)
 
-const getTransform = (index: number) => {
-  if (typeof window !== "undefined" && window.innerWidth < 1024) {
-    return "translateX(0px) rotate(0deg)"
-  }
 
-  if (hovered === null) {
-    if (index === 0) return "translateX(60px) rotate(6deg)"
-    if (index === 1) return "rotate(-6deg)"
-    if (index === 2) return "translateX(-60px) rotate(6deg)"
-    if (index === 3) return "translateX(-120px) rotate(-6deg)"
-  }
-
-  if (hovered === 0) {
-    if (index === 0) return "translateX(60px) rotate(0deg)"
-    if (index === 1) return "translateX(180px) rotate(-6deg)"
-    if (index === 2) return "translateX(100px) rotate(6deg)"
-    if (index === 3) return "translateX(0px) rotate(-6deg)"
-  }
-
-  if (hovered === 1) {
-    if (index === 0) return "translateX(-60px) rotate(6deg)"
-    if (index === 1) return "rotate(0deg)"
-    if (index === 2) return "translateX(60px) rotate(6deg)"
-    if (index === 3) return "translateX(0px) rotate(-6deg)"
-  }
-
-  if (hovered === 2) {
-    if (index === 0) return "translateX(-100px) rotate(6deg)"
-    if (index === 1) return "translateX(-150px) rotate(-6deg)"
-    if (index === 2) return "translateX(-60px) rotate(0deg)"
-    if (index === 3) return "translateX(0px) rotate(-6deg)"
-  }
-
-  if (hovered === 3) {
-    if (index === 0) return "translateX(-100px) rotate(6deg)"
-    if (index === 1) return "translateX(-150px) rotate(-6deg)"
-    if (index === 2) return "translateX(-180px) rotate(6deg)"
-    if (index === 3) return "rotate(0deg) translateX(0px)"
-  }
-
-  return "translateX(0px) rotate(0deg)"
-}
 
   useEffect(() => {
     const fetchFaqs = async () => {
@@ -220,6 +186,80 @@ useEffect(() => {
 }, [locale])
     
 
+
+const getTransform = (index: number) => {
+  if (typeof window !== "undefined" && window.innerWidth < 1024) {
+    return "translateX(0px) rotate(0deg)"
+  }
+
+  if (hovered === null) {
+    if (index === 0) return "translateX(60px) rotate(6deg)"
+    if (index === 1) return "rotate(-6deg)"
+    if (index === 2) return "translateX(-60px) rotate(6deg)"
+    if (index === 3) return "translateX(-120px) rotate(-6deg)"
+  }
+
+  if (hovered === 0) {
+    if (index === 0) return "translateX(60px) rotate(0deg)"
+    if (index === 1) return "translateX(180px) rotate(-6deg)"
+    if (index === 2) return "translateX(100px) rotate(6deg)"
+    if (index === 3) return "translateX(0px) rotate(-6deg)"
+  }
+
+  if (hovered === 1) {
+    if (index === 0) return "translateX(-60px) rotate(6deg)"
+    if (index === 1) return "rotate(0deg)"
+    if (index === 2) return "translateX(60px) rotate(6deg)"
+    if (index === 3) return "translateX(0px) rotate(-6deg)"
+  }
+
+  if (hovered === 2) {
+    if (index === 0) return "translateX(-100px) rotate(6deg)"
+    if (index === 1) return "translateX(-150px) rotate(-6deg)"
+    if (index === 2) return "translateX(-60px) rotate(0deg)"
+    if (index === 3) return "translateX(0px) rotate(-6deg)"
+  }
+
+  if (hovered === 3) {
+    if (index === 0) return "translateX(-100px) rotate(6deg)"
+    if (index === 1) return "translateX(-150px) rotate(-6deg)"
+    if (index === 2) return "translateX(-180px) rotate(6deg)"
+    if (index === 3) return "translateX(0px) rotate(0deg)"  }
+
+  return "translateX(0px) rotate(0deg)"
+}
+const containerRef = useRef<HTMLDivElement>(null)
+
+const handleMouseMove = (e: React.MouseEvent) => {
+  if (window.innerWidth < 1024) return
+  if (!containerRef.current) return
+
+  const cards = Array.from(
+    containerRef.current.querySelectorAll('[data-card]')
+  ) as HTMLElement[]
+
+  const mouseX = e.clientX
+
+  let closestIndex = null
+  let minDistance = Infinity
+
+  cards.forEach((card, index) => {
+    const rect = card.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const distance = Math.abs(mouseX - centerX)
+
+    if (distance < minDistance) {
+      minDistance = distance
+      closestIndex = index
+    }
+  })
+
+  setHovered(closestIndex)
+}
+
+const handleMouseLeave = () => {
+  setHovered(null)
+}
 
   return (
     <div className="overflow-hidden">
@@ -353,7 +393,7 @@ useEffect(() => {
       <section className='bg-primary'>
           
          
-          <section ref={ref} className="md:pt-36 pt-12">
+          <section ref={ref} className="md:pt-36 pt-12 scroll-px-14 max-w-[1440px] m-auto">
 
               <AnimatedSectionTitle
                 text={extra_content.impact.title}
@@ -365,7 +405,7 @@ useEffect(() => {
                variants={staggerContainer(0.35, 1.0)}
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
-                className="flex justify-center flex-wrap items-center px-6"
+                className="flex justify-center flex-wrap items-center"
               >
                 {extra_content.impact.items.map((item: any, i: number) => (
                   <AnimatedIconCounter
@@ -430,7 +470,7 @@ useEffect(() => {
           </div>
 
           
-          <section ref={servicesRef} className="md:pt-36 pt-20 px-4">
+          <section ref={servicesRef} className="md:pt-36 pt-20 px-4 max-w-[1440px] m-auto">
 
                 <AnimatedSectionTitle
                   text={extra_content.services.title}
@@ -503,7 +543,7 @@ useEffect(() => {
 
           </section>
 
-          <section ref={workRef} className="md:py-40 py-16 px-4">
+          <section ref={workRef} className="md:py-40 py-16 px-4 max-w-[1440px] m-auto">
 
             <div className="text-center">
               <AnimatedSectionTitle
@@ -585,37 +625,38 @@ useEffect(() => {
           {extra_content.features.title}
         </h2>
 
-        <div className="grid md:grid-cols-4 gap-6 max-w-[1200px] mx-auto md:px-6 ">
-          {extra_content.features.items.map((item: any, i: number) => (
-            <div
-              key={i}
-              onMouseEnter={() => {
-                if (window.innerWidth >= 1024) setHovered(i)
-              }}
-              onMouseLeave={() => {
-                if (window.innerWidth >= 1024) setHovered(null)
-              }}
-              className="
-                p-8 rounded-2xl
-                transition-transform duration-500
-                ease-[cubic-bezier(.22,1,.36,1)]
-                cursor-pointer
-              "
-              style={{
-                backgroundColor: item.card_color,
-                color: item.text_color,
-                transform: getTransform(i),
-              }}
-            >
-              <h3 className="font-monument font-bold text-xl">
-                {item.title}
-              </h3>
-              <p className="mt-4 text-sm">
-                {item.description}
-              </p>
-            </div>
-          ))}
-          
+        <div
+            ref={containerRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="flex md:flex-row flex-col justify-center max-w-[1200px] mx-auto md:px-6 overflow-visible"
+          >
+            {extra_content.features.items.map((item: any, i: number) => (
+              <div key={i} data-card className="relative  md:w-1/4 w-full">
+                <div
+                  className="
+                    p-8 rounded-2xl
+                    transition-transform duration-500
+                    ease-[cubic-bezier(.22,1,.36,1)]
+                    will-change-transform cursor-pointer
+                    w-full h-full
+                  "
+                  style={{
+                    backgroundColor: item.card_color,
+                    color: item.text_color,
+                    transform: getTransform(i),
+                    zIndex: hovered === i ? 20 : 1,
+                  }}
+                >
+                  <h3 className="font-monument font-bold text-xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-sm">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
         </div>
       </section>
 
@@ -709,68 +750,88 @@ useEffect(() => {
       </section>
 
       <section className="bg-primary md:py-32 py-20">
-           <div className='text-center max-w-[1440px] m-auto px-5'>
+        <div className="text-center max-w-[1440px] m-auto px-5">
 
-                <div ref={projectsRef}>
-                  <AnimatedTypingText
-                    text={extra_content.projects.title}
-                    inView={projectsInView}
-                    className="
-                      text-center
-                      lg:text-5xl
-                      text-[32px]
-                      lg:leading-[75px]
-                      leading-[52px]
-                      font-monument
-                      font-extrabold
-                      text-white
-                    "
-                  />
-                </div>
-                {/* <h2 className="text-center lg:text-5xl text-[32px] lg:leading-[75px] leading-[52px] font-monument font-extrabold text-white">
-                  {extra_content.projects.title}
-                </h2> */}
-                <p className="text-center text-white py-6 max-w-[800px] m-auto">
-                  {extra_content.projects.subtitle}
-                </p>
-           </div>
-           <div className='max-w-[1440px] px-4 pt-20'>
+          <div ref={projectsRef}>
+            <AnimatedTypingText
+              text={extra_content.projects.title}
+              inView={projectsSectionInView}
+              onComplete={() => setTitleDone(true)}
+              className="
+                text-center
+                lg:text-5xl
+                text-[32px]
+                lg:leading-[75px]
+                leading-[52px]
+                font-monument
+                font-extrabold
+                text-white
+              "
+            />
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={
+              titleDone
+                ? { opacity: 1, y: 0 }
+                : { opacity: 0, y: 20 }
+            }
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-center text-white py-6 max-w-[800px] m-auto"
+          >
+            {extra_content.projects.subtitle}
+          </motion.p>
+        </div>
+
+        <div className="max-w-[1440px] m-auto px-4 pt-20">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={titleDone ? "show" : "hidden"}
+          >
             <Swiper
-                modules={[FreeMode, Mousewheel]}
-                freeMode
-                mousewheel={{
-                  forceToAxis: true,
-                  releaseOnEdges: true,
-                }}
-                grabCursor={false}
-                spaceBetween={24}
-                className="!overflow-visible touch-pan-x"
-                breakpoints={{
-                0: {
-                  slidesPerView: 1.1,
-                },
-                640: {
-                  slidesPerView: 2.2,
-                },           
-                1280: {
-                  slidesPerView: 3.2,
-                },
+              modules={[FreeMode, Mousewheel]}
+              freeMode
+              mousewheel={{
+                forceToAxis: true,
+                releaseOnEdges: true,
+              }}
+              spaceBetween={24}
+              className="!overflow-visible opacity-100 touch-pan-x"
+              breakpoints={{
+                0: { slidesPerView: 1.1 },
+                640: { slidesPerView: 2.2 },
+                1280: { slidesPerView: 3.2 },
               }}
             >
               {projects.map((project: any) => (
                 <SwiperSlide key={project.id}>
-                  <ProjectCard project={project} />
+                  <motion.div variants={itemVariants}>
+                    <ProjectCard project={project} />
+                  </motion.div>
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className='flex justify-center mt-8'>
-              <Base 
-                text={'View Full Work'}
-                href={'./portfolio'}
-                className="justify-center w-[230px] mx-auto md:mt-16 mt-8"
-              />
-            </div>
-           </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={
+              titleDone
+                ? { opacity: 1, y: 0 }
+                : { opacity: 0, y: 20 }
+            }
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex justify-center mt-8"
+          >
+            <Base
+              text="View Full Work"
+              href="./portfolio"
+              className="justify-center w-[230px] mx-auto md:mt-16 mt-8"
+            />
+          </motion.div>
+        </div>
       </section>
 
       <section className="md:py-24 py-14" ref={faqsRef}>
@@ -810,7 +871,7 @@ useEffect(() => {
             inView={blogInView}
             className="text-primary max-w-[900px] m-auto lg:mb-16 mb-6 lg:leading-[60px] leading-[40px]"
           />
-          <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-6">
+          <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-6 max-w-[1440px] m-auto">
             {blogs.map(blog => (
               <BlogsWidget
                 key={blog.id}

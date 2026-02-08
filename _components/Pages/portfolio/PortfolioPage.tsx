@@ -8,10 +8,28 @@ import ProjectCard from '@/_components/Common/ProjectCard'
 import TitleBackground from '@/_components/Common/TitleBackground'
 import LetsTalk from '@/_components/Common/LetsTalk'
 
+interface ApiTagline {
+  text?: string
+  front_color?: string
+  back_color?: string
+}
+
 interface PageData {
   title?: string
   content?: string
   extra_content?: {
+    video?: string
+    tagline?: ApiTagline
+    title?: string
+    subtitle?: string | null
+  }
+}
+
+interface MappedPageData {
+  title?: string
+  content?: string
+  extra_content?: {
+    video?: string
     tagline?: string
     tagline_front_color?: string
     tagline_back_color?: string
@@ -65,9 +83,32 @@ export default function ProjectsPage({ page }: Props) {
   const tabsRef = useRef<HTMLDivElement | null>(null)
   const [isSticky, setIsSticky] = useState(false)
   const [scrolled300, setScrolled300] = useState(false)
+  const [pageData, setPageData] = useState<PageData | undefined>(undefined)
+
+  const mappedPage: MappedPageData | undefined = pageData
+  ? {
+      ...pageData,
+      extra_content: {
+        video: pageData.extra_content?.video,
+        tagline: pageData.extra_content?.tagline?.text,
+        tagline_front_color: pageData.extra_content?.tagline?.front_color,
+        tagline_back_color: pageData.extra_content?.tagline?.back_color,
+        title: pageData.extra_content?.title,
+        subtitle: pageData.extra_content?.subtitle,
+      },
+    }
+  : undefined
 
 
-
+    useEffect(() => {
+      const fetchPage = async () => {
+        const res = await getServerSideProps('pages/portfolio', locale)
+        setPageData(res?.props?.data?.data)
+      }
+    
+      fetchPage()
+    }, [locale])
+    
   useEffect(() => {
     const fetchServices = async () => {
       const res = await getServerSideProps('services', locale)
@@ -140,7 +181,7 @@ export default function ProjectsPage({ page }: Props) {
   return (
     <div>
 
-        <TitleBackground data={page} textColor="#000" videoSrc="/videos/services-hero.mp4" />
+        <TitleBackground data={mappedPage} textColor="#000" />
 
         <div className=' '>
         
