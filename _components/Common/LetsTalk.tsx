@@ -1,5 +1,6 @@
 'use client'
 
+import Link from "next/link"
 import LetsTalkIcon from "../SVGs/letstalk"
 
 export default function LetsTalk() {
@@ -31,22 +32,26 @@ export default function LetsTalk() {
                 into immersive experiences that inspire, engage, and leave a
                 lasting impact.s
               </p>
-  
-              <button
+
+              <Link
+                href="./contact-us"
                 className="
+                  block
+                  text-center
                   mt-4 w-72
-                  bg-white
-                  text-primary
+                bg-white
+                text-primary
                   font-semibold
                   px-8
                   py-5
                   rounded-full
-                  transition
-                  hover:scale-105
+                 transition-all
+                  duration-300
+                  hover:bg-pink hover:text-white
                 "
               >
                 Let’s Talk
-              </button>
+              </Link>
             </div>
   
             <div className="relative flex justify-center lg:justify-end">

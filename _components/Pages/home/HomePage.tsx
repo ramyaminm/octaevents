@@ -52,7 +52,7 @@ export default function HomePage({ page }: { page?: HomePageData }) {
   const [scrolled300, setScrolled300] = useState(false)
   const [projects, setProjects] = useState<any[]>([])
   const [loadingProjects, setLoadingProjects] = useState(false)
-
+  const [showHeroContent, setShowHeroContent] = useState(false)
   const [blogs, setBlogs] = useState<any[]>([])
   const [loadingBlogs, setLoadingBlogs] = useState(false)
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
@@ -69,6 +69,14 @@ export default function HomePage({ page }: { page?: HomePageData }) {
   const [faqsRef, faqsInView] = useScrollAnimation();
   const [blogRef, blogInView] = useScrollAnimation();
   const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowHeroContent(true)
+    }, 1200) // 👈 نفس مدة typing تقريبًا
+  
+    return () => clearTimeout(timer)
+  }, [])
 
 
 const [projectsRef, projectsInView] = useInView({
@@ -113,7 +121,6 @@ const itemVariants = {
 };
 
 const [hovered, setHovered] = useState<number | null>(null)
-
 
 
   useEffect(() => {
@@ -288,26 +295,41 @@ const handleMouseLeave = () => {
         <div className="absolute inset-0 bg-[#12063BCC]" />
 
           <div className="relative z-10 max-w-[900px] md:px-6 px-4">
-                <h1 className="font-monument text-white lg:text-5xl text-[32px] lg:leading-[60px] font-extrabold max-w-[300px]">
-                  {extra_content.hero.title}
-                </h1>
+                <motion.h2
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="font-monument text-white lg:text-5xl text-[32px] lg:leading-[60px] font-extrabold max-w-[300px]"
+                >
+                                {extra_content.hero.title}
+                </motion.h2>
 
-                <p className="mt-6 lg:text-lg text-sm max-w-[600px] text-[#CFCBE4]">
+                <motion.p
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 } }
+                  transition={{ duration: 0.4,delay: 0.5, ease: "easeOut" }}
+                  className="mt-6 lg:text-lg text-sm max-w-[600px] text-[#CFCBE4]"
+                >
                   {extra_content.hero.subtitle}
-                </p>
+                </motion.p>
 
-                <div className="mt-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.8, ease: "easeOut" }}
+                  className="mt-8"
+                >
                   <Base
                     text={extra_content.hero.button.text}
                     href={extra_content.hero.button.link}
                     className="justify-center lg:w-[300px]"
                   />
-                </div>
+                </motion.div>
           </div>
 
           <div className=' absolute md:bottom-10 bottom-4 left-4 right-4 flex justify-between'>
-              <div className=" relative md:w-[120px] md:h-[120px] w-[60px] h-[60px] flex items-center justify-center">
-                  <div className="absolute inset-0 md:w-[120px] md:h-[120px] w-[60px] h-[60px]">
+              <div className=" relative md:w-[80px] md:h-[80px] w-[60px] h-[60px] flex items-center justify-center">
+                  <div className="absolute inset-0 md:w-[80px] md:h-[80px] w-[60px] h-[60px]">
                       <svg
                           viewBox="0 0 120 120"
                           className="w-full h-full overflow-visible animate-spin-slow"
@@ -326,14 +348,14 @@ const handleMouseLeave = () => {
 
                           <text
                           fill="white"
-                          fontSize="14"
+                          fontSize="16"
                           fontWeight="900"
                           letterSpacing="2"
                           fontFamily="var(--font-monument), sans-serif"
                           dy="4"
                           >
                           <textPath href="#circlePath">
-                          • PLAY VIDEO • PLAY VIDEO • PLAY VIDEO
+                          • PLAY VIDEO • PLAY VIDEO
                           </textPath>
                           </text>
                       </svg>
@@ -342,14 +364,14 @@ const handleMouseLeave = () => {
                       // onClick={handlePlay}
                       className="
                       relative z-10
-                      md:h-14 md:w-14 h-[26px] w-[26px]
+                      md:h-[40px] md:w-[40px] h-[26px] w-[26px]
                       rounded-full
                       bg-white
                       flex items-center justify-center
                       transition
                       "
                   >
-                    <span className='block md:w-[21px] md:h-[24px] w-[12px] h-[13px]'>
+                    <span className='block md:w-[18px] md:h-[20px] w-[12px] h-[13px]'>
                       <IconPlay />
                     </span>
                   </button>
@@ -522,7 +544,7 @@ const handleMouseLeave = () => {
                           </p>
 
                           <Link
-                            href="./about-us"
+                            href="./services"
                             className="
                               group
                               inline-flex

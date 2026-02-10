@@ -5,6 +5,8 @@ import LetsTalk from '@/_components/Common/LetsTalk'
 import { useEffect, useState } from 'react'
 import FAQItem from '@/_components/Common/FAQItem'
 import { getServerSideProps } from '@/_components/api/general'
+import MissionVision from '@/_components/Common/AboutScroll'
+import MissionVisionPinned from '@/_components/Common/AboutScroll'
 
 interface AboutPageData {
   title: string
@@ -244,7 +246,7 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
         </section>
 
         {extra_content.hero.video && (
-            <section className='bg-[#1d004d] p-6'>
+            <section className='bg-primary p-6'>
                 <div className='max-w-[500px] m-auto'>
                     <video
                             src={extra_content.video}
@@ -303,7 +305,8 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
 
 
       <section>
-        <div className="max-w-[1440px] mx-auto">
+      <MissionVisionPinned items={extra_content.mission_vision.items}/>
+        {/* <div className="max-w-[1440px] mx-auto">
           {extra_content.mission_vision.items.map((item, i) => (
             <div
               key={i}
@@ -336,7 +339,7 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
                 </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </section>
 
       <section className="md:py-24 py-14">

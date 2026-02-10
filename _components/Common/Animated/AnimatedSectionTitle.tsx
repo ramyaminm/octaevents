@@ -19,10 +19,10 @@ export default function AnimatedSectionTitle({
       animate={inView ? "visible" : "hidden"}
       className={`
         text-center
-        lg:text-5xl
+        lg:text-[48px]
         text-[28px]
         font-monument
-        font-extrabold
+        font-extrabold md:leading-[64px]
         ${className}
       `}
     >
