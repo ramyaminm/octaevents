@@ -251,21 +251,28 @@ export default function ProjectsPage({ page }: Props) {
             
 
             <div className='relative bg-primary overflow-hidden'>
-                    <div
-                        className={`
-                        pointer-events-none
-                        absolute
-                        top-0 left-0 right-0                    
-                        -translate-x-1/2
-                        m-auto
-                        bg-white
-                        w-[54px] h-[27px]
-                        origin-top
-                        transition-transform duration-[3200ms]
-                        ease-[cubic-bezier(.22,1,.36,1)]
-                        ${scrolled300 ? 'scale-[30] rounded-none' : 'scale-100  rounded-b-full'}
-                        `}
-                    />
+                     <div
+                          className={`
+                            pointer-events-none
+                            absolute
+                            top-0 left-1/2
+                            -translate-x-1/2
+                            bg-white translate-y-[-30px]
+                            w-[60px] h-[60px]   /* 👈 دايرة حقيقية */
+                            rounded-full        /* 👈 دايرة */
+
+                            origin-center
+                            transition-all
+                            duration-[3200ms]
+                            ease-[cubic-bezier(.22,1,.36,1)]
+
+                            ${
+                              scrolled300
+                                ? 'scale-[35] rounded-none'
+                                : 'scale-100'
+                            }
+                          `}
+                        />
 
 
 
