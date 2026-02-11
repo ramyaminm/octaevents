@@ -1,11 +1,9 @@
 'use client'
-import Image from 'next/image'
 import Base from '@/_components/Common/Buttons/base'
 import LetsTalk from '@/_components/Common/LetsTalk'
 import { useEffect, useState } from 'react'
 import FAQItem from '@/_components/Common/FAQItem'
 import { getServerSideProps } from '@/_components/api/general'
-import MissionVision from '@/_components/Common/SectionScroll'
 import MissionVisionPinned from '@/_components/Common/SectionScroll'
 import { motion } from 'framer-motion'
 
@@ -333,41 +331,7 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
 
 
       <section>
-      <MissionVisionPinned items={extra_content.mission_vision.items}/>
-        {/* <div className="max-w-[1440px] mx-auto">
-          {extra_content.mission_vision.items.map((item, i) => (
-            <div
-              key={i}
-              className="flex lg:flex-row flex-col-reverse lg:h-[100vh]"
-            >
-                <div className='lg:w-1/2 bg-[linear-gradient(31.04deg,#FFB000_4.37%,#FE007F_33.87%,#822DD1_61.59%,#00A7FF_88.52%)]'>
-                    <div className='flex flex-col h-full justify-center lg:px-8 p-12'>
-                       <div className='flex items-center gap-6'>
-                        <Image
-                            src={item.icon.src}
-                            alt={item.icon.alt}
-                            width={64}
-                            height={64}
-                            />
-                            <h3 className="lg:text-5xl text-[32px] text-white font-monument font-extrabold">
-                            {item.title}
-                            </h3>
-                       </div>
-                        <p className=" lg:text-3xl text-xl text-white font-normal pt-8">{item.content}</p>
-                    </div>
-                </div>
-                <div className="relative lg:w-1/2 overflow-hidden">
-                    <Image
-                        src={item.image.src}
-                        alt={item.image.alt}
-                        width={750}
-                        height={800}
-                        className="object-cover"
-                    />
-                </div>
-            </div>
-          ))}
-        </div> */}
+        <MissionVisionPinned items={extra_content.mission_vision.items}/>
       </section>
 
       <section className="md:py-24 py-14 px-4">

@@ -21,7 +21,6 @@ export default function MissionVisionExact({ items }: any) {
     return () => window.removeEventListener('resize', checkScreen)
   }, [])
 
-  /* Wheel only on desktop */
   useEffect(() => {
     if (isMobile) return
 
@@ -54,14 +53,87 @@ export default function MissionVisionExact({ items }: any) {
     return () => el.removeEventListener('wheel', onWheel)
   }, [index, items.length, isMobile])
 
-  /* ================= MOBILE VERSION ================= */
 
-  if (isMobile) {
+  if (!isMobile) {
+    return (
+      <section className="h-[200vh]">
+        <div
+          ref={containerRef}
+          className="sticky top-0 h-screen overflow-hidden bg-white"
+        >
+          {items.map((item: any, i: number) => {
+            const isActive = i === index
+            const isReversed = i % 2 !== 0
+
+            return (
+              <div key={i} className="absolute inset-0 flex">
+                <div
+                  className={`
+                    w-1/2 h-full flex flex-col justify-center px-20
+                    bg-[linear-gradient(31deg,#FFB000,#FE007F,#822DD1,#00A7FF)]
+                    transition-transform duration-[1000ms]
+                    ease-[cubic-bezier(0.77,0,0.18,1)]
+                    ${
+                      isActive
+                        ? 'translate-y-0'
+                        : direction === 'down'
+                        ? 'translate-y-full'
+                        : '-translate-y-full'
+                    }
+                    ${isReversed ? 'order-2' : 'order-1'}
+                  `}
+                >
+                  <div className='flex items-center gap-6'>
+                      <Image
+                          src={item.icon.src}
+                          alt={item.icon.alt}
+                          width={64}
+                          height={64}
+                          />
+                      <h3 className="lg:text-5xl text-[32px] text-white font-monument font-extrabold">
+                        {item.title}
+                      </h3>
+                    </div>
+                  <p className="lg:text-2xl text-[18px] text-white font-normal pt-8">
+                    {item.content}
+                  </p>
+                </div>
+
+                <div
+                  className={`
+                    relative w-1/2 h-full
+                    transition-transform duration-[1000ms]
+                    ease-[cubic-bezier(0.77,0,0.18,1)]
+                    ${
+                      isActive
+                        ? 'translate-y-0'
+                        : direction === 'down'
+                        ? '-translate-y-full'
+                        : 'translate-y-full'
+                    }
+                    ${isReversed ? 'order-1' : 'order-2'}
+                  `}
+                >
+                  <Image
+                    src={item.image.src}
+                    alt={item.image.alt || ''}
+                    fill
+                    className="object-cover"
+                    sizes="50vw"
+                    priority
+                  />
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </section>
+    )
+  } else {   
     return (
       <section className="w-full">
         {items.map((item: any, i: number) => (
           <div key={i} className="flex flex-col">
-            {/* Image First */}
             <div className="relative w-full h-[300px]">
               <Image
                 src={item.image.src}
@@ -71,7 +143,6 @@ export default function MissionVisionExact({ items }: any) {
               />
             </div>
 
-            {/* Text */}
             <div className="bg-[linear-gradient(31deg,#FFB000,#FE007F,#822DD1,#00A7FF)] px-6 py-12">
                 <div className='flex items-center gap-6'>
                     <Image
@@ -94,82 +165,5 @@ export default function MissionVisionExact({ items }: any) {
     )
   }
 
-  /* ================= DESKTOP VERSION ================= */
-
-  return (
-    <section className="h-[200vh]">
-      <div
-        ref={containerRef}
-        className="sticky top-0 h-screen overflow-hidden bg-white"
-      >
-        {items.map((item: any, i: number) => {
-          const isActive = i === index
-          const isReversed = i % 2 !== 0
-
-          return (
-            <div key={i} className="absolute inset-0 flex">
-              {/* TEXT */}
-              <div
-                className={`
-                  w-1/2 h-full flex flex-col justify-center px-20
-                  bg-[linear-gradient(31deg,#FFB000,#FE007F,#822DD1,#00A7FF)]
-                  transition-transform duration-[1000ms]
-                  ease-[cubic-bezier(0.77,0,0.18,1)]
-                  ${
-                    isActive
-                      ? 'translate-y-0'
-                      : direction === 'down'
-                      ? 'translate-y-full'
-                      : '-translate-y-full'
-                  }
-                  ${isReversed ? 'order-2' : 'order-1'}
-                `}
-              >
-                <div className='flex items-center gap-6'>
-                    <Image
-                        src={item.icon.src}
-                        alt={item.icon.alt}
-                        width={64}
-                        height={64}
-                        />
-                    <h3 className="lg:text-5xl text-[32px] text-white font-monument font-extrabold">
-                      {item.title}
-                    </h3>
-                  </div>
-                <p className="lg:text-2xl text-[18px] text-white font-normal pt-8">
-                  {item.content}
-                </p>
-              </div>
-
-              {/* IMAGE */}
-              <div
-                className={`
-                  relative w-1/2 h-full
-                  transition-transform duration-[1000ms]
-                  ease-[cubic-bezier(0.77,0,0.18,1)]
-                  ${
-                    isActive
-                      ? 'translate-y-0'
-                      : direction === 'down'
-                      ? '-translate-y-full'
-                      : 'translate-y-full'
-                  }
-                  ${isReversed ? 'order-1' : 'order-2'}
-                `}
-              >
-                <Image
-                  src={item.image.src}
-                  alt={item.image.alt || ''}
-                  fill
-                  className="object-cover"
-                  sizes="50vw"
-                  priority
-                />
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </section>
-  )
+ 
 }
