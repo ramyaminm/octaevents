@@ -5,8 +5,9 @@ import LetsTalk from '@/_components/Common/LetsTalk'
 import { useEffect, useState } from 'react'
 import FAQItem from '@/_components/Common/FAQItem'
 import { getServerSideProps } from '@/_components/api/general'
-import MissionVision from '@/_components/Common/AboutScroll'
-import MissionVisionPinned from '@/_components/Common/AboutScroll'
+import MissionVision from '@/_components/Common/SectionScroll'
+import MissionVisionPinned from '@/_components/Common/SectionScroll'
+import { motion } from 'framer-motion'
 
 interface AboutPageData {
   title: string
@@ -171,10 +172,15 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
             <div className="relative z-10 max-w-[750px] my-auto px-4 py-14 h-full">
                 <div className="flex justify-center h-full flex-col">
                     {extra_content.hero.tagline && (
-                        <div className="relative w-fit">
-                                <span
-                                className="absolute inset-0 translate-x-[3px] translate-y-[4px] rounded-full rotate-[-5deg] z-0"
-                                style={{ backgroundColor: extra_content.hero.tagline_back_color }}
+                          <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, ease: "easeOut" }}
+                            className="relative w-fit"
+                          >
+                            <span
+                              className="absolute inset-0 translate-x-[3px] translate-y-[4px] rounded-full rotate-[-5deg] z-0"
+                              style={{ backgroundColor: extra_content.hero.tagline_back_color }}
                             />
 
                             <h1
@@ -199,29 +205,51 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
                             >
                                 {extra_content.hero.tagline}
                             </h1>
-                        </div>
+                          </motion.div>
                     )}
 
                     {extra_content.hero.title && (
-                        <h2 className="mt-8 font-monument font-extrabold text-white text-[32px] md:text-[50px]">
-                            {extra_content.hero.title}
-                        </h2>
+                        // <h2 className="mt-8 font-monument font-extrabold text-white text-[32px] md:text-[50px]">
+                        //     {extra_content.hero.title}
+                        // </h2>
+                        <motion.h2
+                          initial={{ opacity: 0, y: 16 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4,delay: 0.4, ease: "easeOut" }}
+                          className="mt-8 font-monument font-extrabold text-white text-[32px] md:text-[50px]"
+                        >
+                                      {extra_content.hero.title}
+                        </motion.h2>
+      
                     )}
 
                     {extra_content.hero.subtitle && (
-                        <p className="mt-6  max-w-[900px] mx-auto text-white text-lg font-light">
-                            {extra_content.hero.subtitle}
-                        </p>
+                        // <p className="mt-6  max-w-[900px] mx-auto text-white text-lg font-light">
+                        //     {extra_content.hero.subtitle}
+                        // </p>
+                        <motion.p
+                          initial={{ opacity: 0, y: 16 }}
+                          animate={{ opacity: 1, y: 0 } }
+                          transition={{ duration: 0.4,delay: 0.8, ease: "easeOut" }}
+                          className="mt-6  max-w-[900px] mx-auto text-white text-lg font-light"
+                        >
+                          {extra_content.hero.subtitle}
+                        </motion.p>
                     )}
 
                     {extra_content.hero.button.link && (
-                        <div className='w-[300px] pt-6'>
+                          <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: 1.2, ease: "easeOut" }}
+                            className="w-[300px] pt-6"
+                          >
                             <Base
                                 text={extra_content.hero.button.text}
                                 href={extra_content.hero.button.link}
                                 className="w-full justify-center"
                             />
-                        </div>
+                        </motion.div>
                     )}
                 </div>
             </div>
@@ -342,7 +370,7 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
         </div> */}
       </section>
 
-      <section className="md:py-24 py-14">
+      <section className="md:py-24 py-14 px-4">
             <h2 className="lg:text-5xl text-[32px] lg:leading-[60px] leading-[42px] font-monument font-extrabold text-primary text-center lg:mb-16 mb-6 max-w-[600px] m-auto">
                 {extra_content.faqs.title}
             </h2>
@@ -375,44 +403,44 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
       </section>
 
         <section>
-                <div className='relative bg-primary  overflow-hidden'>
-                        <div
-                          className={`
-                            pointer-events-none
-                            absolute
-                            top-0 left-1/2
-                            -translate-x-1/2
-                            bg-white translate-y-[-30px]
-                            w-[60px] h-[60px]   /* 👈 دايرة حقيقية */
-                            rounded-full        /* 👈 دايرة */
+            <div className='relative bg-primary  overflow-hidden'>
+                    <div
+                      className={`
+                        pointer-events-none
+                        absolute
+                        top-0 left-1/2
+                        -translate-x-1/2
+                        bg-white translate-y-[-30px]
+                        w-[60px] h-[60px]   /* 👈 دايرة حقيقية */
+                        rounded-full        /* 👈 دايرة */
 
-                            origin-center
-                            transition-all
-                            duration-[3200ms]
-                            ease-[cubic-bezier(.22,1,.36,1)]
+                        origin-center
+                        transition-all
+                        duration-[3200ms]
+                        ease-[cubic-bezier(.22,1,.36,1)]
 
-                            ${
-                              scrolled300
-                                ? 'scale-[35] rounded-none'
-                                : 'scale-100'
-                            }
-                          `}
-                        />
-            
-            
-            
-                        <div className='max-w-[1000px] mx-auto px-4'>
-                            <div className="py-20 relative text-center">
+                        ${
+                          scrolled300
+                            ? 'scale-[35] rounded-none'
+                            : 'scale-100'
+                        }
+                      `}
+                    />
+        
+        
+        
+                    <div className='max-w-[1000px] mx-auto px-4'>
+                        <div className="py-20 relative text-center">
 
-                                <h2 className={`lg:text-[44px] text-[32px] lg:leading-[64px] leading-[40px] font-monument font-extrabold  ${scrolled300 ? 'text-primary' : 'text-white'}`}>
-                                {extra_content.paragraph_section.title}
-                                </h2>
-                                <p className={`mt-6 lg:text-3xl text-xl leading-10 ${scrolled300 ? 'text-primary' : 'text-[#B8B4C4]'}`}>
-                                    {extra_content.paragraph_section.content}
-                                </p>
-                            </div>
+                            <h2 className={`lg:text-[44px] text-[32px] lg:leading-[64px] leading-[40px] font-monument font-extrabold  ${scrolled300 ? 'text-primary' : 'text-white'}`}>
+                            {extra_content.paragraph_section.title}
+                            </h2>
+                            <p className={`mt-6 lg:text-3xl text-xl leading-10 ${scrolled300 ? 'text-primary' : 'text-[#B8B4C4]'}`}>
+                                {extra_content.paragraph_section.content}
+                            </p>
                         </div>
-                </div>  
+                    </div>
+            </div>  
         </section>
 
       <LetsTalk />

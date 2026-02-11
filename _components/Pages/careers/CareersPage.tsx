@@ -8,6 +8,7 @@ import { getServerSideProps } from '@/_components/api/general'
 import ClockAlt from '@/_components/SVGs/clock-alt'
 import MapMarker from '@/_components/SVGs/map-marker'
 import VacanciesIcon from '@/_components/SVGs/vacancies_icon'
+import { motion } from 'framer-motion'
 
 
 interface Heading {
@@ -89,9 +90,14 @@ export default function CareersPage({ page }: CareersPageProps) {
   return (
     <div className='bg-primary'>
       <div className='max-w-[1440px] mx-auto'>
-          <div className="text-center md:pb-14 pb-8 pt-28  ">
+          <div className="text-center md:pt-40 md:pb-28 pb-14 pt-28  ">
             {heading?.tagline && (
-              <div className="relative inline-block">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="relative inline-block"
+              >
                 <span
                   className="absolute inset-0 translate-x-[3px] translate-y-[4px] rounded-full rotate-[-5deg] z-0"
                   style={{ background: heading.tagline.back_color }}
@@ -119,14 +125,19 @@ export default function CareersPage({ page }: CareersPageProps) {
                 >
                   {heading.tagline.text}
                 </h1>
-              </div>
+              </motion.div>
             )}
 
             {heading?.title && (
               <div className="max-w-[750px] mt-[30px] mx-auto text-white">
-                  <h2 className="font-monument font-semibold md:text-5xl text-[32px] md:leading-[65px] leading-[42px]">
-                    {heading.title}
-                  </h2>
+                <motion.h2
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+                  className="font-monument font-semibold md:text-5xl text-[32px] md:leading-[65px] leading-[42px]"
+                >
+                  {heading.title}
+                </motion.h2>
               </div>
             )}
           </div>

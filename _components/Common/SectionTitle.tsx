@@ -1,5 +1,7 @@
 'use client'
 
+import { motion } from "framer-motion"
+
 interface ExtraContent {
   tagline?: string
   tagline_front_color?: string
@@ -35,9 +37,14 @@ export default function SectionTitle({
   if (!tagline && !title) return null
 
   return (
-    <div className="text-center bg-primary pb-14 pt-28  px-4">
+    <div className="text-center bg-primary md:pt-40 md:pb-28 pb-14 pt-28  px-4">
       {tagline && (
-        <div className="relative inline-block">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="relative inline-block"
+          >
           <span
             className="absolute inset-0 translate-x-[3px] translate-y-[4px] rounded-full rotate-[-5deg] z-0"
             style={{ backgroundColor: backColor }}
@@ -65,15 +72,20 @@ export default function SectionTitle({
           >
             {tagline}
           </h1>
-        </div>
+        </motion.div>
       )}
 
       {(title) && (
         <div className="max-w-[750px] mt-[30px] mx-auto text-white">
           {title && (
-            <h2 className="font-monument font-semibold md:text-5xl text-[32px] md:leading-[65px] leading-[42px]">
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4,delay: 0.4, ease: "easeOut" }}
+              className="font-monument font-semibold md:text-5xl text-[32px] md:leading-[65px] leading-[42px]"
+            >
               {title}
-            </h2>
+            </motion.h2>
           )}
         </div>
       )}

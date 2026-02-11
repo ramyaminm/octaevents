@@ -1,5 +1,7 @@
 'use client'
 
+import { motion } from "framer-motion"
+
 interface ExtraContent {
   tagline?: string
   tagline_front_color?: string
@@ -59,47 +61,62 @@ export default function TitleBackground({
         <div className="text-center">
 
           {tagline && (
-            <div className="relative inline-block">
-               <span
-            className="absolute inset-0 translate-x-[3px] translate-y-[4px] rounded-full rotate-[-5deg] z-0"
-            style={{ backgroundColor: backColor }}
-          />
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="relative inline-block"
+              >
+                <span
+                  className="absolute inset-0 translate-x-[3px] translate-y-[4px] rounded-full rotate-[-5deg] z-0"
+                  style={{ backgroundColor: backColor }}
+                />
 
-          <h1
-            className="
-              relative
-              font-monument
-              text-[14px]
-              md:text-base
-              font-semibold
-              px-[18px]
-              py-[7px]
-              rounded-full
-              border-2
-              border-[#1A0044]
-              whitespace-nowrap
-              rotate-[-5deg]
-            "
-            style={{
-              backgroundColor: frontColor,
-              color: textColor,
-            }}
-          >
-            {tagline}
-          </h1>
-            </div>
+                <h1
+                  className="
+                    relative
+                    font-monument
+                    text-[14px]
+                    md:text-base
+                    font-semibold
+                    px-[18px]
+                    py-[7px]
+                    rounded-full
+                    border-2
+                    border-[#1A0044]
+                    whitespace-nowrap
+                    rotate-[-5deg]
+                  "
+                  style={{
+                    backgroundColor: frontColor,
+                    color: textColor,
+                  }}
+                >
+                  {tagline}
+                </h1>
+              </motion.div>
           )}
 
           {title && (
-            <h2 className="mt-8 font-monument font-extrabold text-white text-[32px] md:text-[58px]">
-              {title}
-            </h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4,delay: 0.4, ease: "easeOut" }}
+              className="mt-8 font-monument font-extrabold text-white text-[32px] md:text-[58px]"
+            >
+               {title}
+            </motion.h2>
           )}
 
           {subtitle && (
-            <p className="mt-6  max-w-[900px] mx-auto text-white text-lg font-light">
-              {subtitle}
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 } }
+              transition={{ duration: 0.4,delay: 0.8, ease: "easeOut" }}
+              className="mt-6  max-w-[900px] mx-auto text-white text-lg font-light"
+            >
+            {subtitle}
+            </motion.p>
           )}
 
         </div>
