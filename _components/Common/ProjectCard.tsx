@@ -35,17 +35,18 @@ export default function ProjectCard({ project }: ProjectCardProps) {
        cursor-pointer
       "
     >
-      <Image
-        src={project.front_image.src}
-        alt={project.front_image.alt || project.name}
-        width={400}
-        height={300}
-        className="
-          w-full h-full object-cover
-          transition-transform duration-500
-          group-hover:scale-105
-        "
-      />
+      <div className=' w-[430px] h-[290px]'>
+        <Image
+          src={project.front_image.src}
+          alt={project.front_image.alt || project.name}
+         fill
+          className="
+            w-full h-full object-cover
+            transition-transform duration-500
+            group-hover:scale-105
+          "
+        />
+      </div>
 
       <div className="absolute inset-0 bg-black/50 group-hover:scale-105  transition-transform duration-500" />
 
