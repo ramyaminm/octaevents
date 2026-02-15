@@ -33,8 +33,8 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
 
             {/* <div className="absolute inset-0 bg-black/40" /> */}
 
-            <div className="absolute top-0 bottom-0 right-0 left-0 m-auto w-[120px] h-[120px] flex items-center justify-center">
-                <div className="absolute inset-0 w-[120px] h-[120px]">
+            <div className="absolute top-0 bottom-0 right-0 left-0 m-auto md:w-[80px] md:h-[80px] w-[60px] h-[60px] flex items-center justify-center">
+                <div className="absolute inset-0 md:w-[80px] md:h-[80px] w-[60px] h-[60px]">
                     <svg
                         viewBox="0 0 120 120"
                         className="w-full h-full overflow-visible animate-spin-slow"
@@ -53,7 +53,7 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
 
                         <text
                         fill="white"
-                        fontSize="14"
+                        fontSize="16"
                         fontWeight="900"
                         letterSpacing="2"
                         fontFamily="var(--font-monument), sans-serif"
@@ -71,14 +71,16 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
                     onClick={handlePlay}
                     className="
                     relative z-10
-                    h-14 w-14
+                    md:h-[40px] md:w-[40px] h-[26px] w-[26px]
                     rounded-full
                     bg-white
                     flex items-center justify-center
                     transition
                     "
                 >
-                    <IconPlay />
+                    <span className='block md:w-[18px] md:h-[20px] w-[12px] h-[13px]'>
+                      <IconPlay />
+                    </span>
                 </button>
             </div>
         </div>
@@ -88,7 +90,7 @@ export default function VideoPlayer({ src, poster }: VideoPlayerProps) {
         ref={videoRef}
         src={src}
         controls={isPlaying}
-        className="w-full h-full object-cover"
+        className="m-auto h-full"
       />
     </div>
   )

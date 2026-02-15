@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import SliderArrow from '../SVGs/slider_arrow'
 
@@ -16,6 +16,7 @@ interface Props {
 
 export default function ProjectGallerySlider({ images, alt }: Props) {
   const [active, setActive] = useState(0)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   if (!images?.length) return null
 
@@ -27,72 +28,109 @@ export default function ProjectGallerySlider({ images, alt }: Props) {
     setActive((prev) => (prev === images.length - 1 ? 0 : prev + 1))
   }
 
-  return (
-    <section className="relative">
-      <div className="relative mx-auto overflow-hiddens">
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      next()
+    }, 2800)
 
-        <Image
-          src={images[active].src}
-          alt={alt}
-          width={1400}
-          height={750}
-          className="w-full h-[600px] object-cover"
-          priority
-        />
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+  }, [])
+
+  return (
+    <section className="relative max-w-[1400px] flex md:gap-x-3 gap-y-3 md:flex-row flex-col">
+
+      <div className="relative mx-auto overflow-hidden md:w-[90%] md:h-[600px] w-full h-[300px]">
+
+        <div
+          className="flex h-full transition-transform duration-700 ease-in-out"
+          style={{
+            transform: `translateX(-${active * 100}%)`
+          }}
+        >
+          {images.map((img, i) => (
+            <div
+              key={i}
+              className="relative min-w-full h-full"
+            >
+              <Image
+                src={img.src}
+                alt={alt}
+                fill
+                className="object-cover"
+                priority={i === 0}
+              />
+            </div>
+          ))}
+        </div>
 
         <button
           onClick={prev}
           className="
-            absolute
-            bottom-4
-            right-20
-            w-12 h-12
+            absolute bottom-4
+            md:right-20 right-16
+            md:w-12 md:h-12 w-8 h-8
             bg-[#842BD0]
-            text-white
-              flex items-center justify-center
-            transition
-             rotate-180
+            flex items-center justify-center
+            rotate-180
           "
         >
-          <SliderArrow />
+          <span className='block md:w-[11px] md:h-[19px]'>
+            <SliderArrow />
+          </span>
         </button>
 
         <button
           onClick={next}
           className="
-            absolute bottom-4
-            right-6
-            w-12 h-12
+            absolute bottom-4 right-6
+            md:w-12 md:h-12 w-8 h-8
             bg-[#842BD0]
-            text-white
             flex items-center justify-center
-            transition
           "
         >
-          <SliderArrow />
+          <span className='block md:w-[11px] md:h-[19px]'>
+            <SliderArrow />
+          </span>
         </button>
       </div>
 
-      {/* <div className="max-w-[1400px] mx-auto mt-6 flex gap-4 justify-center">
-        {images.map((img, i) => (
-          <button
-            key={i}
-            onClick={() => setActive(i)}
-            className={`
-              w-20 h-14 overflow-hidden rounded-xl border
-              ${i === active ? 'border-secondary' : 'border-transparent'}
-            `}
-          >
-            <Image
-              src={img.src}
-              alt={alt}
-              width={100}
-              height={70}
-              className="w-full h-full object-cover"
-            />
-          </button>
-        ))}
-      </div> */}
+      <div className="md:w-[10%] w-full">
+        <div
+          className="
+            flex md:flex-wrap gap-3
+            overflow-x-auto md:overflow-x-hidden
+            md:overflow-y-auto
+            md:max-h-[600px]
+            whitespace-nowrap md:whitespace-normal
+          "
+        >
+          {images.map((img, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className={`
+                md:w-full w-[80px]
+                md:h-[100px] h-[80px]
+                flex-shrink-0
+                overflow-hidden
+                rounded-md
+                relative
+                transition-opacity duration-300
+                ${i === active ? 'opacity-100' : 'opacity-50'}
+              `}
+            >
+              <Image
+                src={img.src}
+                alt={alt}
+                fill
+                className="object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }

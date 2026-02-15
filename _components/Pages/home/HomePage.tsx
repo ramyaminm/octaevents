@@ -376,7 +376,6 @@ const handleMouseLeave = () => {
                     </span>
                   </button>
               </div>
-              {/* customers */}
               <div className="flex items-center md:gap-4 gap-2 md:mt-10">
                 <div className="flex -space-x-3">
                   {extra_content.hero.customers.items.map((item: any, i: number) => (
