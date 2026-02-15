@@ -34,7 +34,6 @@ useEffect(() => {
     )
 
     if (res?.props?.data?.success) {
-      // استبعاد المشروع الحالي
       const filtered = res.props.data.data.filter(
         (p: any) => p.id !== project.id
       )
@@ -170,7 +169,7 @@ useEffect(() => {
         <div className="md:py-20 py-10 px-4">
             <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[380px_1fr] md:gap-16 gap-4 items-start">
     
-                <h2 className="text-4xl text-[22px] font-monument text-primary font-extrabold leading-tight">
+                <h2 className="md:text-4xl text-[22px] font-monument text-primary font-extrabold leading-tight">
                 Execution
                 </h2>
 

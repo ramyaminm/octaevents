@@ -31,7 +31,8 @@ export default function AnimatedIconCounter({
       className="text-center md:w-1/3 w-1/2 lg:pb-14 pb-8"
     >
       <AnimatedIcon icon={icon} />
-      <AnimatedCounter value={500} prefix="+" suffix="K"start={true} />
+      {/* <AnimatedCounter value={value} suffix={suffix} start={start} delay={1500} */}
+        <AnimatedCounter value={value} prefix="+" suffix="K" start={true} delay={1500} />
       <p className="text-white lg:text-lg">{title}</p>
     </motion.div>
   )
