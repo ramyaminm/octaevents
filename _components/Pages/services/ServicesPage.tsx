@@ -117,7 +117,7 @@ export default function ServicesPage({ page }: Props) {
                 }
               `}>
 
-                <div className="relative w-full md:h-[710px] h-[420px]">
+                <div className="relative w-full md:h-[600px] h-[420px]">
 
                   <Image
                     src={activeService.front_image.src}

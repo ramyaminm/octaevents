@@ -59,7 +59,7 @@ useEffect(() => {
                 className='m-auto'
               />
             )}
-            <span className='block w-fit mx-auto md:text-xl font-medium bg-[#842BD0] rounded px-2 py-1 md:my-5 my-3 text-white'>
+            <span className='block w-fit mx-auto md:text-xl font-medium bg-white/80 text-primary rounded px-2 py-1 md:my-5 my-3'>
                 {project.services[0].name}
             </span>
 
@@ -87,7 +87,7 @@ useEffect(() => {
           </div>
 
           <div className='relative'>
-            <h2 className='absolute top-4 left-4 p-3 z-[9] md:max-w-[400px] max-w-[280px] font-monument font-extrabold md:text-3xl text-sm text-white bg-[#842BD0]'>{project.tagline}</h2>
+            <h2 className='absolute top-4 left-4 p-3 z-[9] md:max-w-[400px] max-w-[280px] font-monument font-extrabold md:text-3xl text-sm bg-white/80 text-primary'>{project.tagline}</h2>
             {project.gallery?.length > 0 && (
             <ProjectGallerySlider
                 images={project.gallery}

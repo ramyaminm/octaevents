@@ -104,6 +104,7 @@ export default function ProjectGallerySlider({ images, alt }: Props) {
             md:overflow-y-auto
             md:max-h-[600px]
             whitespace-nowrap md:whitespace-normal
+            scrollbar-hide
           "
         >
           {images.map((img, i) => (
