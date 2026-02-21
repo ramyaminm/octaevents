@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { getServerSideProps } from '@/_components/api/general'
 import ProjectCard from '@/_components/Common/ProjectCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Mousewheel } from 'swiper/modules'
+import { Autoplay, FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import Image from 'next/image'
 import Map from '@/_components/SVGs/map-alt'
@@ -187,25 +187,31 @@ useEffect(() => {
       <section>
           {relatedProjects.length > 0 && (
             <div className="bg-primary md:py-32 py-12">
-              <div className="max-w-[1440px] mx-auto px-4">
+              <div className="max-w-[1440px] mx-auto px-4 overflow-hidden">
 
                 <h2 className="text-center text-white md:text-4xl text-lg font-monument font-extrabold md:mb-16 mb-6">
                   More Like This
                 </h2>
 
                 <Swiper
-                   modules={[FreeMode, Mousewheel]}
+                   modules={[FreeMode, Mousewheel, Autoplay]}
                    freeMode
                    mousewheel={{
                      forceToAxis: true,
                      releaseOnEdges: true,
                    }}
+                   autoplay={{
+                    delay: 1500,         
+                    disableOnInteraction: false, 
+                    pauseOnMouseEnter: true,    
+                  }}
+                  speed={800} 
                    spaceBetween={24}
                    className="!overflow-visible opacity-100 touch-pan-x"
                    breakpoints={{
                      0: { slidesPerView: 1.1 },
-                     640: { slidesPerView: 2.2 },
-                     1280: { slidesPerView: 3.2 },
+                     640: { slidesPerView: 2.1 },
+                     1280: { slidesPerView: 3.1 },
                    }}
                 >
                   {relatedProjects.map((item: any) => (

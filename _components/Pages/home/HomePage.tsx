@@ -441,13 +441,12 @@ const handleMouseLeave = () => {
               >
                 {extra_content.impact.items.map((item: any, i: number) => (
                   <AnimatedIconCounter
-                    key={i}
-                    start={inView}
-                    icon={item.icon}
-                    value={parseInt(item.counter.replace(/\D/g, ""))}
-                    suffix={item.counter.replace(/[0-9]/g, "")}
-                    title={item.title}
-                  />
+                  key={i}
+                  start={inView}
+                  icon={item.icon}
+                  counter={item.counter}   // 👈 كله string
+                  title={item.title}
+                />
                 ))}
               </motion.div>
           </section>
@@ -816,25 +815,31 @@ const handleMouseLeave = () => {
           </motion.p>
         </div>
 
-        <div className="max-w-[1440px] m-auto px-4 pt-20">
+        <div className="max-w-[1440px] m-auto px-4 pt-20 overflow-hidden">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={titleDone ? "show" : "hidden"}
           >
             <Swiper
-              modules={[FreeMode, Mousewheel]}
+              modules={[FreeMode, Mousewheel, Autoplay]}
               freeMode
               mousewheel={{
                 forceToAxis: true,
                 releaseOnEdges: true,
               }}
+              autoplay={{
+                delay: 1500,         
+                disableOnInteraction: false, 
+                pauseOnMouseEnter: true,    
+              }}
+              speed={800} 
               spaceBetween={24}
               className="!overflow-visible opacity-100 touch-pan-x"
               breakpoints={{
                 0: { slidesPerView: 1.1 },
-                640: { slidesPerView: 2.2 },
-                1280: { slidesPerView: 3.2 },
+                640: { slidesPerView: 2.1 },
+                1280: { slidesPerView: 3.1 },
               }}
             >
               {projects.map((project: any) => (

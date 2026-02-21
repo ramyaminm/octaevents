@@ -12,16 +12,16 @@ interface Props {
     src: string
     alt: string
   }
-  value: number
-  suffix?: string
+  counter: string
   title: string
   start: boolean
 }
 
 export default function AnimatedIconCounter({
   icon,
-  value,
-  suffix = "",
+  // value,
+  // suffix = "",
+  counter,
   title,
   start
 }: Props) {
@@ -32,7 +32,7 @@ export default function AnimatedIconCounter({
     >
       <AnimatedIcon icon={icon} />
       {/* <AnimatedCounter value={value} suffix={suffix} start={start} delay={1500} */}
-        <AnimatedCounter value={value} prefix="+" suffix="K" start={true} delay={1500} />
+        <AnimatedCounter value={counter} start={true} delay={1500} />
       <p className="text-white lg:text-lg">{title}</p>
     </motion.div>
   )

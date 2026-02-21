@@ -1,23 +1,39 @@
 'use client'
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 interface Props {
-  value: number
-  prefix?: string
-  suffix?: string
+  value: string | number
+  start: boolean
   duration?: number
   delay?: number
-  start: boolean
 }
 
 export default function AnimatedCounter({
   value,
-  prefix = "",
-  suffix = "",
+  start,
   duration = 1800,
   delay = 500,
-  start
 }: Props) {
+
+  // ✅ Parse Dynamic Prefix + Number + Suffix
+  const { prefix, numericValue, suffix } = useMemo(() => {
+
+    if (typeof value === "number") {
+      return { prefix: "", numericValue: value, suffix: "" }
+    }
+
+    const prefixMatch = value.match(/^[^\d]+/)
+    const prefix = prefixMatch ? prefixMatch[0] : ""
+
+    const numberMatch = value.match(/[\d.]+/)
+    const numericValue = numberMatch ? parseFloat(numberMatch[0]) : 0
+
+    const suffixMatch = value.match(/[^\d.]+$/)
+    const suffix = suffixMatch ? suffixMatch[0] : ""
+
+    return { prefix, numericValue, suffix }
+
+  }, [value])
 
   const [count, setCount] = useState(0)
 
@@ -30,7 +46,7 @@ export default function AnimatedCounter({
       const animate = (time: number) => {
         if (!startTime) startTime = time
         const progress = Math.min((time - startTime) / duration, 1)
-        setCount(Math.floor(progress * value))
+        setCount(progress * numericValue)
 
         if (progress < 1) requestAnimationFrame(animate)
       }
@@ -39,12 +55,12 @@ export default function AnimatedCounter({
     }, delay)
 
     return () => clearTimeout(timeout)
-  }, [start, value, duration, delay])
+  }, [start, numericValue, duration, delay])
 
   return (
-    <h3 className="lg:pt-6 pt-3 lg:text-[44px] text-[26px] text-white font-monument font-extrabold">
+    <h3 className="lg:text-[44px] text-[26px] text-white font-monument font-extrabold">
       {prefix}
-      {count.toLocaleString()}
+      {Math.floor(count).toLocaleString()}
       {suffix}
     </h3>
   )

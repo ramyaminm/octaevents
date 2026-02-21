@@ -375,8 +375,8 @@ export default function AboutUsPage({ page }: { page?: AboutPageData }) {
                         top-0 left-1/2
                         -translate-x-1/2
                         bg-white translate-y-[-30px]
-                        w-[60px] h-[60px]   /* 👈 دايرة حقيقية */
-                        rounded-full        /* 👈 دايرة */
+                        w-[60px] h-[60px]   
+                        rounded-full     
 
                         origin-center
                         transition-all

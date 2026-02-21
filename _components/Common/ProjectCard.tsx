@@ -70,15 +70,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </span>
         )}
 
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-white">
+        <div className="flex items-center justify-between md:gap-3 gap-2">
+          <div className="flex items-center md:gap-2 gap-1 text-white">
             {project.brand?.name && (
-              <p className="font-monument text-sm font-semibold">
+              <p className="font-monument md:text-sm text-xs font-semibold">
                 {project.brand.name}
               </p>
             )}
             <span className="w-1 h-1 bg-white rounded-full" />
-            <h4 className="font-monument text-sm font-semibold">
+            <h4 className="font-monument md:text-sm text-xs font-semibold">
               {project.name}
             </h4>
           </div>
